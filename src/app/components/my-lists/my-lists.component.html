@@ -1,0 +1,55 @@
+<mat-card class="create-section">
+  <mat-card-header>
+    <mat-card-title>
+      <div class="bold">Create New List</div>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div>
+      <form class="create-form" [formGroup]="createForm">
+        <mat-form-field class="full-width">
+          <mat-label>List Title</mat-label>
+          <input matInput placeholder="title is required" formControlName="title" >
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>List Description</mat-label>
+          <input matInput formControlName="description">
+        </mat-form-field>
+      </form>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button
+      class="btn btn-primary"
+      [disabled]="!createForm.get('title').value"
+      (click)="createList()">
+        Create
+      </button>
+
+    <span class="info">
+      <i>*Add/Remove movies from movie-details-popup</i>
+    </span>
+  </mat-card-actions>
+</mat-card>
+
+<mat-accordion class="accordion" *ngIf="myLists && myLists.length">
+  <mat-expansion-panel class="panel" *ngFor="let collection of myLists">
+    <mat-expansion-panel-header class="bold">
+      <mat-panel-title> {{collection.name}} </mat-panel-title>
+      <mat-panel-description > {{collection.description}} </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <app-movie-list
+    *ngIf="collection.movies.length"
+      [title]="''"
+      [isSearchView]="false"
+      [myListMovies]="collection.movies"
+      [totalPages]="totalPages"
+      [totalMovies]="totalMovies"
+      (actionCompleted)="getMyLists()"></app-movie-list>
+
+  </mat-expansion-panel>
+</mat-accordion>

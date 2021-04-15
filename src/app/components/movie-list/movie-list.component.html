@@ -1,0 +1,29 @@
+<mat-card class="movie-list">
+  <mat-card-header>
+    <mat-card-title>
+      <div class="bold">{{title}}</div>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content *ngIf="hasResults">
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let movie of movies" class="movie-row" (click)="getMovieDetails(movie.id)">
+        <section class="inner-wrapper">
+          <div class="movie-poster" [ngStyle]="{ backgroundImage: 'url('+ movie.poster +')' }"></div>
+          <div class="movie-title">{{movie.title}}</div>
+          <div class="movie-voteAvg">( {{ movie.voteAvg }} )</div>
+        </section>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-paginator
+      *ngIf="isSearchView"
+      class="paginator"
+      (page)="pageChangeEvent($event)"
+      [length]="pageLength"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions">
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

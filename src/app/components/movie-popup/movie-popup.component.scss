@@ -1,0 +1,47 @@
+.container{
+  padding: 0px;
+
+  .header{
+    display: flex;
+    color: white;
+    align-items: baseline;
+    justify-content: space-between;
+    background-color: #007bff;
+  }
+
+  .content{
+    padding: 0px 10px;
+
+    .red{
+      color: rgb(151, 8, 8);
+    }
+
+    .rateInput{
+      width: 140px;
+      margin-left: 10px;
+    }
+  }
+
+}
+
+.movie-background {
+  height: 200px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: grey;
+}
+
+.actions{
+  display: flex;
+  justify-content: space-around;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+::ng-deep .mat-dialog-container {
+  overflow-y: hidden !important;
+}

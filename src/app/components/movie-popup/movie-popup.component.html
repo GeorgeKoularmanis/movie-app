@@ -1,0 +1,63 @@
+<div class="dialog-header">
+    <h2 mat-dialog-title>{{data.movie.title}}</h2>
+    <button mat-mini-fab color="warn">{{data.movie.voteAvg}}</button>
+  </div>
+
+<div mat-dialog-content>
+    <div class="movie-background" [ngStyle]="{ backgroundImage: 'url(' + data.movie.poster + ')' }"></div>
+    <p>{{data.movie.text}}</p>
+
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        <span class="bold">Budget:</span>&nbsp;<span>{{data.movie.budget}}</span>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <span class="bold">Revenue:</span>&nbsp;<span>{{data.movie.revenue}}</span>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <span class="bold">Realease Date:</span>&nbsp;<span>{{data.movie.releaseDate | date: 'dd/MM/yyyy'}}</span>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <span class="bold">Voters:</span>&nbsp;<span>{{data.movie.voteCount}}</span>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <span class="bold">Spoken Languages:</span>&nbsp;<span>{{data.movie.spokenLanguages | spokenLanguages}}</span>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <form class="form-inline" [formGroup]="rateForm">
+          <span class="bold red">Your Rating:</span>
+          <input class="form-control rateInput mr-sm-7" appRateValidator formControlName="rate">
+        </form>
+      </mat-list-item>
+
+    </mat-list>
+
+  </div>
+
+<div mat-dialog-actions class="actions">
+    <button
+      [matMenuTriggerFor]="addMenu"
+      [disabled]="!userLists || !userLists.length"
+      class="btn btn-primary">
+        Add to list
+      </button>
+    <mat-menu #addMenu="matMenu" yPosition="above">
+      <button mat-menu-item *ngFor="let list of userLists" (click)="addToList(list.id, list.name)">{{list.name}}</button>
+    </mat-menu>
+
+    <button
+      [matMenuTriggerFor]="removeMenu"
+      [disabled]="!userListsIncludingMovie || !userListsIncludingMovie.length"
+      class="btn btn-danger">
+        Remove from list
+      </button>
+    <mat-menu #removeMenu="matMenu" yPosition="above">
+      <button mat-menu-item *ngFor="let list of userListsIncludingMovie" (click)="removeFromList(list.id, list.name)">{{list.name}}</button>
+    </mat-menu>
+
+    <button class="btn btn-light" [disabled]="rateForm.get('rate').invalid" (click)="rateMovie()">Rate</button>
+  </div>

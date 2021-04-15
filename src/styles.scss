@@ -1,0 +1,38 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  background-color: #17a2b8;
+
+  .bold{
+    font-weight: bold;
+  }
+
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.mat-list-base .mat-list-item {
+  height: auto!important;
+  min-height: 48px;
+}
+
+/*Bootstrap Customization*/
+
+@media (min-width: 576px){
+  .navbar-expand-sm {
+      flex-flow: row nowrap;
+      justify-content: space-between;
+  }
+}
+
+@media (min-width: 576px) {
+  .form-inline .form-control {
+      display: inline-block;
+      //width: 500px;
+      vertical-align: middle;
+      margin-right: 10px;
+  }
+}

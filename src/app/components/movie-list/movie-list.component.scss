@@ -1,0 +1,32 @@
+.movie-list{
+  background-color: #17a2b8 !important;
+
+  .movie-row {
+
+    &:hover{
+      cursor: pointer;
+      border-radius: 10px;
+      background-color: #3ac5da !important;
+    }
+
+  }
+
+  .paginator{
+    background-color: #17a2b8;
+  }
+  .inner-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+}
+
+.movie-poster {
+  height: 50px;
+  width: 50px;
+  background-color: grey;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-right: 15px;
+}

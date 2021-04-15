@@ -1,0 +1,26 @@
+<div class="search-section">
+  <form class="form-inline" [formGroup]="searchForm">
+    <input
+      class="form-control mr-sm-7"
+      type="text"
+      placeholder="Search"
+      appInputValidator
+      formControlName="token">
+    <button
+      class="btn btn-primary"
+      [disabled]="searchForm.get('token').invalid"
+      (click)="onSearchMovies()">
+        Search
+      </button>
+  </form>
+</div>
+
+<app-movie-list
+  *ngIf="showResultsSection"
+  (getNextMovies)="onSearchMovies($event)"
+  [title]="resultsTitle"
+  [totalPages]="totalPages"
+  [totalMovies]="totalMovies"
+  [myListMovies]="myLists"
+  [isSearchView]="true">
+</app-movie-list>
